@@ -10,7 +10,7 @@ on:
         default: 'MEDIATEK'
         required: true
         type: choice
-        options: [MEDIATEK, ROCKCHIP, X86, QCA-WIFI-NO]
+        options: [MEDIATEK, ROCKCHIP, X86, IPQ6000]
       SOURCE:
         default: 'VIKINGYFY/immortalwrt'
         required: true
