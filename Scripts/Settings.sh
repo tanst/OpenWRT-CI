@@ -56,7 +56,3 @@ else
 	echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
 fi
-
-#修改去掉 qualcommax 默认 wifi 和 usb 包
-sed -i 's/wpad[^ ]* //g; s/kmod-ath[^ ]* //g; s/kmod-usb[^ ]* //g' ./target/linux/qualcommax/Makefile
-
