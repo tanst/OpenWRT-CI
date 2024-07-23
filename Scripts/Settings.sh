@@ -56,3 +56,6 @@ else
 	echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
 	echo "CONFIG_PACKAGE_luci-app-homeproxy=y" >> ./.config
 fi
+
+#改系统日志字体大小
+sed -i '/font-size:12px/d' ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js
