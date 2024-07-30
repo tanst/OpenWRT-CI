@@ -24,13 +24,8 @@ UPDATE_PACKAGE() {
 UPDATE_PACKAGE "argon" "jerrykuku/luci-theme-argon" "$([[ $WRT_REPO == *"lede"* ]] && echo "18.06" || echo "master")"
 UPDATE_PACKAGE "frp" "tanst/openwrt-packages" "main" "pkg"
 UPDATE_PACKAGE "nginx" "tanst/openwrt-packages" "main" "pkg"
-if [[ $WRT_REPO != *"lede"* ]]; then
-	UPDATE_PACKAGE "homeproxy" "tanst/homeproxy" "master"
-fi
+UPDATE_PACKAGE "sing-box" "tanst/openwrt-packages" "main" "pkg"
 
-if [[ $WRT_REPO == *"openwrt-6.x"* ]]; then
-	UPDATE_PACKAGE "qmi-wwan" "immortalwrt/wwan-packages" "master" "pkg"
-fi
 
 #更新软件包版本
 UPDATE_VERSION() {
