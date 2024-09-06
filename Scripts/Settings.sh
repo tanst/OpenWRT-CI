@@ -16,6 +16,7 @@ sed -i "/timezone='.*'/a\\\t\t\set system.@system[-1].zonename='Asia/Shanghai'" 
 #修改 bash
 sed -i "s|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g" ./package/base-files/files/etc/passwd
 sed -i 's|export PS1='\''\\u@\\h:\\w\\\$ '\''|export PS1='\''\\[\\e[1;33m\\]\\u\\[\\e[1;31m\\]@\\[\\e[1;35m\\]\\h\\[\\e[1;32m\\][\\t]\\[\\e[1;31m\\]:\\[\\e[1;36m\\]\\w\\[\\e[1;34m\\]\\$\\[\\e[0;39m\\] '\''|' ./package/base-files/files/etc/profile
+echo "" > ./package/base-files/files/etc/banner
 
 if [[ $WRT_REPO == *"lede"* ]]; then
 	LEDE_FILE=$(find ./package/lean/autocore/ -type f -name "index.htm")
