@@ -4,8 +4,13 @@
 sed -i "s/luci-theme-bootstrap/luci-theme-$WRT_THEME/g" $(find ./feeds/luci/collections/ -type f -name "Makefile")
 #修改immortalwrt.lan关联IP
 sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $(find ./feeds/luci/modules/luci-mod-system/ -type f -name "flash.js")
+#修改 bash
+sed -i "s|root:x:0:0:root:/root:/bin/ash|root:x:0:0:root:/root:/bin/bash|g" ./package/base-files/files/etc/passwd
+sed -i 's|export PS1='\''\\u@\\h:\\w\\\$ '\''|export PS1='\''\\[\\e[1;33m\\]\\u\\[\\e[1;31m\\]@\\[\\e[1;35m\\]\\h\\[\\e[1;32m\\][\\t]\\[\\e[1;31m\\]:\\[\\e[1;36m\\]\\w\\[\\e[1;34m\\]\\$\\[\\e[0;39m\\] '\''|' ./package/base-files/files/etc/profile
+
 #添加编译日期标识
-sed -i "s/(\(luciversion || ''\))/(\1) + (' \/ $WRT_CI-$WRT_DATE')/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
+WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+sed -i "s/(\(luciversion || ''\)).*,/(\1) + (' \/ Built by Toy on $WRT_DATE'),/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
 
 WIFI_SH="./package/base-files/files/etc/uci-defaults/990_set-wireless.sh"
 WIFI_UC="./package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc"
