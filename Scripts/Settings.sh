@@ -63,3 +63,9 @@ if [[ $WRT_TARGET != *"X86"* ]]; then
 	echo "CONFIG_TARGET_OPTIONS=y" >> ./.config
 	echo "CONFIG_TARGET_OPTIMIZATION=\"-O2 -pipe -march=armv8-a+crypto+crc -mcpu=cortex-a53+crypto+crc -mtune=cortex-a53\"" >> ./.config
 fi
+
+#添加编译日期标识
+WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d_%H.%M.%S")
+sed -i "s/(\(luciversion || ''\)).*,/(\1) + (' \/ Built by Toy on $WRT_DATE'),/g" $(find ./feeds/luci/modules/luci-mod-status/ -type f -name "10_system.js")
+#改系统日志字体大小
+sed -i '/font-size:12px/d' ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/syslog.js
