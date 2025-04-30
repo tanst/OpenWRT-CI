@@ -1,5 +1,5 @@
 #科学插件调整
-ONFIG_PACKAGE_sing-box=y
+CONFIG_PACKAGE_sing-box=y
 #参数调整
 CONFIG_DEVEL=y
 CONFIG_CCACHE=y
